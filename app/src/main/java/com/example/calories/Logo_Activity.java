@@ -18,11 +18,11 @@ public class Logo_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.logo_activity);
-        init();
+        anim();
         startMainActivity();
     }
 
-    private void init(){
+    private void anim(){
         //загружаем анимацию в переменную
         Logo_anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.logo_anim);
         //находим картинку

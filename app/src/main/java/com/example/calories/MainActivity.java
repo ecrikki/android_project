@@ -2,13 +2,13 @@ package com.example.calories;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -39,5 +39,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick_Settings(View view) {
+    }
+
+    public void onClick_Add(View view) {
+        Intent i = new Intent(MainActivity.this, Add_Activity.class);
+        startActivity(i);
     }
 }
