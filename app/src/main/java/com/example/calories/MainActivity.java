@@ -3,8 +3,10 @@ package com.example.calories;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.text.DateFormat;
@@ -12,11 +14,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
     private TextView text_date;
+    private Button b1, b2, b3, b4;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         text_date = findViewById(R.id.textView6);
@@ -27,18 +32,42 @@ public class MainActivity extends AppCompatActivity {
         String dateText = dateFormat.format(currentDate);
 
         text_date.setText(dateText);
+        b1 = findViewById(R.id.button_today);
+        b2 = findViewById(R.id.button_history);
+        b3 = findViewById(R.id.button_parameters);
+        b4 = findViewById(R.id.button_settings);
+        b1.setBackgroundResource(R.color.Peach);
+        b2.setBackgroundResource(R.color.Bard);
+        b3.setBackgroundResource(R.color.Bard);
+        b4.setBackgroundResource(R.color.Bard);
     }
 
     public void onClick_Today(View view) {
+        b1.setBackgroundResource(R.color.Peach);
+        b2.setBackgroundResource(R.color.Bard);
+        b3.setBackgroundResource(R.color.Bard);
+        b4.setBackgroundResource(R.color.Bard);
     }
 
     public void onClick_History(View view) {
+        b2.setBackgroundResource(R.color.Peach);
+        b1.setBackgroundResource(R.color.Bard);
+        b3.setBackgroundResource(R.color.Bard);
+        b4.setBackgroundResource(R.color.Bard);
     }
 
     public void onClick_Parameters(View view) {
+        b3.setBackgroundResource(R.color.Peach);
+        b2.setBackgroundResource(R.color.Bard);
+        b1.setBackgroundResource(R.color.Bard);
+        b4.setBackgroundResource(R.color.Bard);
     }
 
     public void onClick_Settings(View view) {
+        b4.setBackgroundResource(R.color.Peach);
+        b2.setBackgroundResource(R.color.Bard);
+        b3.setBackgroundResource(R.color.Bard);
+        b1.setBackgroundResource(R.color.Bard);
     }
 
     public void onClick_Add(View view) {

@@ -27,15 +27,17 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick_Today"
-            android:text="@string/button_today" />
+            android:text="@string/button_today"
+            android:theme="@style/noClicks"/>
 
         <Button
-            android:id="@+id/button_hisoty"
+            android:id="@+id/button_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick_History"
-            android:text="@string/button_history" />
+            android:text="@string/button_history"
+            android:theme="@style/noClicks" />
 
         <Button
             android:id="@+id/button_parameters"
@@ -43,7 +45,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick_Parameters"
-            android:text="@string/button_parameters" />
+            android:text="@string/button_parameters"
+            android:theme="@style/noClicks" />
 
         <Button
             android:id="@+id/button_settings"
@@ -51,7 +54,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick_Settings"
-            android:text="@string/button_settings" />
+            android:text="@string/button_settings"
+            android:theme="@style/noClicks"/>
 
     </LinearLayout>
 

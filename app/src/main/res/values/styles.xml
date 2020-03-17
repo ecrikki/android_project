@@ -9,5 +9,9 @@
         <!--Убрать статс сверху-->
         <item name="android:windowFullscreen">true</item>
     </style>
+    <style name="noClicks" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/Bard</item>
+        <item name="android:textColor">@color/Peach</item>
+    </style>
 
 </resources>
