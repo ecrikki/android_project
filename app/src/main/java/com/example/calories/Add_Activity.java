@@ -6,21 +6,25 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Add_Activity extends Activity {
     DatabaseReference ref;
-    ArrayList<Products> list;
     RecyclerView recyclerView;
     SearchView searchView;
+    ArrayList<Class_prod> prod_type;
+    ArrayList<Prod> product;
     String[] Array = new String[]{"овощи", "фрукты и ягоды"};
 
     @Override
@@ -29,12 +33,20 @@ public class Add_Activity extends Activity {
         setContentView(R.layout.add_activity);
 
         recyclerView = findViewById(R.id.rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        prod_type = new ArrayList<>();
         searchView = findViewById(R.id.searchView);
-        list = new ArrayList<>();
-        for (String products_key:Array) {
+
+        for (String products_key : Array) {
             ref = FirebaseDatabase.getInstance().getReference(products_key);
             getDataFromDB();
         }
+        setData();
+    }
+
+
+    protected void setData(){
+
     }
 
     protected void getDataFromDB(){
@@ -42,11 +54,16 @@ public class Add_Activity extends Activity {
             ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    product = new ArrayList<>();
                     if(dataSnapshot.exists()){
+                        String p = dataSnapshot.getKey();
                         for(DataSnapshot ds: dataSnapshot.getChildren()){
-                            list.add(ds.getValue(Products.class));
+                            product.add(ds.getValue(Prod.class));
                         }
-                        ProductsAdapter adapter = new ProductsAdapter(list);
+                        Class_prod i = new Class_prod(p, product);
+                        prod_type.add(i);
+
+                        ProductsAdapter adapter = new ProductsAdapter(prod_type);
                         recyclerView.setAdapter(adapter);
                     }
                 }
@@ -74,13 +91,22 @@ public class Add_Activity extends Activity {
     }
 
     private void search(String str){
-        ArrayList<Products> myList = new ArrayList<>();
-        for(Products object:list){
-            if(object.getId_product().toLowerCase().contains(str.toLowerCase())){
-                myList.add(object);
+        ArrayList<Class_prod> mList = new ArrayList<>();
+        for(Class_prod object:prod_type){
+            ArrayList<Prod> myList = new ArrayList<>();
+            String title = object.getTitle();
+            List p = object.getItems();
+            for(Object pr: p){
+                Prod product = (Prod) pr;
+                if(product.getId_product().toLowerCase().contains(str.toLowerCase())){
+                    myList.add(product);
+                }
             }
+            Class_prod i = new Class_prod(title, myList);
+            mList.add(i);
+            System.out.println(mList);
         }
-        ProductsAdapter adapter = new ProductsAdapter(myList);
+        ProductsAdapter adapter = new ProductsAdapter(mList);
         recyclerView.setAdapter(adapter);
     }
 }

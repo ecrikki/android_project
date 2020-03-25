@@ -7,41 +7,39 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
+import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
+
 import java.util.ArrayList;
+import java.util.List;
 
-public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder> {
-    ArrayList <Products> list;
-    String inf = "ккал/100г";
-
-    public ProductsAdapter(ArrayList <Products> list){
-        this.list = list;
+public class ProductsAdapter extends ExpandableRecyclerViewAdapter<Class_prodViewHolder, ProdViewHolder> {
+    public ProductsAdapter(List<? extends ExpandableGroup> groups) {
+        super(groups);
     }
 
     @Override
-    public ProductsViewHolder onCreateViewHolder(ViewGroup parent, int i) {
-        return new ProductsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.card_holder, parent, false));
+    public Class_prodViewHolder onCreateGroupViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.class_of_product, parent, false);
+        return new Class_prodViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(ProductsViewHolder holder, int position) {
-        holder.ID.setText(list.get(position).getId_product());
-        holder.Kkal.setText(list.get(position).getКалорийность() + " " + inf);
+    public ProdViewHolder onCreateChildViewHolder(ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product, parent, false);
+        return new ProdViewHolder(v);
     }
 
     @Override
-    public int getItemCount() {
-        return list.size();
+    public void onBindChildViewHolder(ProdViewHolder holder, int flatPosition, ExpandableGroup group, int childIndex) {
+        final Prod product = (Prod) group.getItems().get(childIndex);
+        holder.bind(product);
     }
 
-    class ProductsViewHolder extends RecyclerView.ViewHolder{
-        TextView ID, Kkal;
-
-        public ProductsViewHolder(View itemView){
-            super(itemView);
-
-            ID = itemView.findViewById(R.id.ID);
-            Kkal = itemView.findViewById(R.id.kkal);
-        }
+    @Override
+    public void onBindGroupViewHolder(Class_prodViewHolder holder, int flatPosition, ExpandableGroup group) {
+        final Class_prod company = (Class_prod) group;
+        holder.bind(company);
     }
 }
 
