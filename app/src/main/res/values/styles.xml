@@ -13,5 +13,9 @@
         <item name="colorButtonNormal">@color/Bard</item>
         <item name="android:textColor">@color/Peach</item>
     </style>
+    <style name="onClicks" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/Peach</item>
+        <item name="android:textColor">@color/Bard</item>
+    </style>
 
 </resources>
