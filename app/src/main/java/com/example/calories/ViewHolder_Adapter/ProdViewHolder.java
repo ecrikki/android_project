@@ -1,8 +1,10 @@
-package com.example.calories;
+package com.example.calories.ViewHolder_Adapter;
 
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.calories.Class.Prod;
+import com.example.calories.R;
 import com.thoughtbot.expandablerecyclerview.viewholders.ChildViewHolder;
 
 public class ProdViewHolder extends ChildViewHolder {

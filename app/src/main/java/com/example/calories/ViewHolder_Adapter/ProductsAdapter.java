@@ -1,16 +1,15 @@
-package com.example.calories;
+package com.example.calories.ViewHolder_Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
+import com.example.calories.Class.Class_prod;
+import com.example.calories.Class.Prod;
+import com.example.calories.R;
 import com.thoughtbot.expandablerecyclerview.ExpandableRecyclerViewAdapter;
 import com.thoughtbot.expandablerecyclerview.models.ExpandableGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsAdapter extends ExpandableRecyclerViewAdapter<Class_prodViewHolder, ProdViewHolder> {

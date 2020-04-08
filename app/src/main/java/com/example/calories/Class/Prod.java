@@ -1,10 +1,7 @@
-package com.example.calories;
+package com.example.calories.Class;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+public class Prod {
 
-public class Prod implements Parcelable {
-    
     public String id_product, белки, жиры, углеводы, калорийность;
 
     public Prod() {
@@ -56,41 +53,5 @@ public class Prod implements Parcelable {
 
     public void setКалорийность(String калорийность) {
         this.калорийность = калорийность;
-    }
-
-    protected Prod(Parcel in) {
-
-        id_product = in.readString();
-        белки = in.readString();
-        жиры = in.readString();
-        углеводы = in.readString();
-        калорийность = in.readString();
-    }
-
-    public static final Creator<Prod> CREATOR = new Creator<Prod>() {
-        @Override
-        public Prod createFromParcel(Parcel in) {
-            return new Prod(in);
-        }
-
-        @Override
-        public Prod[] newArray(int size) {
-            return new Prod[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(id_product);
-        dest.writeString(белки);
-        dest.writeString(жиры);
-        dest.writeString(углеводы);
-        dest.writeString(калорийность);
-
     }
 }

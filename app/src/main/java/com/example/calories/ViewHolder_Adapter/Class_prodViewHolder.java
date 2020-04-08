@@ -1,35 +1,39 @@
-package com.example.calories;
+package com.example.calories.ViewHolder_Adapter;
 
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.calories.Class.Class_prod;
+import com.example.calories.R;
 import com.thoughtbot.expandablerecyclerview.viewholders.GroupViewHolder;
 
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
 
 public class Class_prodViewHolder extends GroupViewHolder {
-    private TextView mTextView;
+    private TextView class_pr;
     private ImageView arrow;
 
     public Class_prodViewHolder(View itemView) {
         super(itemView);
-        mTextView = itemView.findViewById(R.id.textView);
+        class_pr = itemView.findViewById(R.id.textView);
         arrow = itemView.findViewById(R.id.arrow);
     }
 
     public void bind(Class_prod class_prod){
-        mTextView.setText(class_prod.getTitle());
+        class_pr.setText(class_prod.getTitle());
     }
 
     @Override
     public void expand() {
+
         animateExpand();
     }
 
     @Override
     public void collapse() {
+
         animateCollapse();
     }
 

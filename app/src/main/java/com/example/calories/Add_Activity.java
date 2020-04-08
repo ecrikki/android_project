@@ -9,11 +9,13 @@ import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.calories.Class.Class_prod;
+import com.example.calories.Class.Prod;
+import com.example.calories.ViewHolder_Adapter.ProductsAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -41,12 +43,6 @@ public class Add_Activity extends Activity {
             ref = FirebaseDatabase.getInstance().getReference(products_key);
             getDataFromDB();
         }
-        setData();
-    }
-
-
-    protected void setData(){
-
     }
 
     protected void getDataFromDB(){

@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
         // Текущее время
         Date currentDate = new Date();
         // Форматирование времени как "день недели.день.месяц"
-        DateFormat dateFormat = new SimpleDateFormat("EEEE.dd.MMMM", Locale.getDefault());
+        DateFormat dateFormat = new SimpleDateFormat("EEEE dd MMMM", Locale.getDefault());
         String dateText = dateFormat.format(currentDate);
 
         text_date.setText(dateText);
@@ -55,6 +55,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClick_Today(View view) {
+        b3.setBackgroundColor(naBk);
+        b3.setTextColor(naText);
+        b4.setBackgroundColor(naBk);
+        b4.setTextColor(naText);
 
         b1.setBackgroundColor(actBk);
         b1.setTextColor(actText);
