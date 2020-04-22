@@ -96,10 +96,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/other"
             android:layout_width="match_parent"
-            android:layout_height="138dp"
+            android:layout_height="135dp"
             android:layout_margin="5dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
 
 
     </LinearLayout>
