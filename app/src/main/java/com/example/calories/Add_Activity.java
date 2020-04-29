@@ -4,10 +4,14 @@ import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 
 import com.example.calories.Class.Class_prod;
@@ -43,14 +47,28 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
         search.setOnQueryTextListener(this);
         search.setOnCloseListener(this);
 
-        displayList();
-    }
-
-    private void displayList(){
         for (String products_key : Array) {
             ref = FirebaseDatabase.getInstance().getReference(products_key);
             getDataFromDB();
         }
+        chooseProd();
+    }
+
+    private void chooseProd(){
+        myList.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                final Prod selected = (Prod) adapter.getChild(groupPosition, childPosition);
+                LayoutInflater li = LayoutInflater.from(Add_Activity.this);
+                View dialolgView = li.inflate(R.layout.dialog_activity, null);
+                AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(Add_Activity.this);
+                mDialogBuilder.setView(dialolgView);
+                final EditText userInput = dialolgView.findViewById(R.id.input_text);
+                AlertDialog alertDialog = mDialogBuilder.create();
+                alertDialog.show();
+                return true;
+            }
+        });
     }
 
     protected void getDataFromDB() {

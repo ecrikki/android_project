@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/custombackground"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -29,7 +30,7 @@
             android:layout_weight="1"
             android:onClick="onClick_Today"
             android:text="@string/button_today"
-            android:theme="@style/noClicks"/>
+            android:theme="@style/noClicks" />
 
         <Button
             android:id="@+id/button_history"
@@ -56,7 +57,7 @@
             android:layout_weight="1"
             android:onClick="onClick_Settings"
             android:text="@string/button_settings"
-            android:theme="@style/noClicks"/>
+            android:theme="@style/noClicks" />
 
     </LinearLayout>
 
@@ -64,44 +65,79 @@
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/custombackground"
+
         android:orientation="vertical"
+        android:weightSum="1.0"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:id="@+id/breakfast"
             android:layout_width="match_parent"
-            android:layout_height="136dp"
-            android:layout_margin="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.125"
+            android:text="@string/text_breakfast" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lunch"
             android:layout_width="match_parent"
-            android:layout_height="136dp"
-            android:layout_margin="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.125" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <TextView
             android:id="@+id/dinner"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
-            android:layout_margin="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.125"
+            android:text="@string/text_lunch" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.125" />
+
+        <TextView
+            android:id="@+id/supper"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.125"
+            android:text="@string/text_dinner" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.125" />
+
+        <TextView
             android:id="@+id/other"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
-            android:layout_margin="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:layout_height="64dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="0.125"
+            android:text="@string/text_other" />
 
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="0.125" />
     </LinearLayout>
 
     <LinearLayout
