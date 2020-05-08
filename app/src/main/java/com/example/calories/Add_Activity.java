@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.Toast;
@@ -24,7 +26,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Add_Activity extends Activity implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
@@ -35,6 +36,7 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
     private ArrayList<Class_prod> class_prodList = new ArrayList<>();
     DatabaseReference ref;
     String[] Array = new String[]{"овощи", "фрукты и ягоды"};
+    String gramm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,7 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
         setContentView(R.layout.add_activity);
 
         myList = findViewById(R.id.expandableList);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         search = findViewById(R.id.search);
-        search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         search.setIconifiedByDefault(false);
         search.setOnQueryTextListener(this);
         search.setOnCloseListener(this);
@@ -61,19 +61,27 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 final Prod selected = (Prod) adapter.getChild(groupPosition, childPosition);
-               // LayoutInflater li = LayoutInflater.from(Add_Activity.this);
-               // View dialolgView = li.inflate(R.layout.dialog_activity, null);
-               // AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(Add_Activity.this);
-               // mDialogBuilder.setView(dialolgView);
-               // final EditText userInput = dialolgView.findViewById(R.id.input_text);
-               // AlertDialog alertDialog = mDialogBuilder.create();
-               // alertDialog.show();
-               // System.out.println(selected);
-                Intent i = new Intent();
-                i.putExtra("prod", (Serializable) selected);
-                //i.putExtra("kkal", selected.getКалорийность());
-                setResult(RESULT_OK, i);
-                finish();
+                LayoutInflater li = LayoutInflater.from(Add_Activity.this);
+                final View dialolgView = li.inflate(R.layout.dialog_activity, null);
+                AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(Add_Activity.this);
+                mDialogBuilder.setView(dialolgView);
+                Button ok = dialolgView.findViewById(R.id.button2);
+                final AlertDialog alertDialog = mDialogBuilder.create();
+                alertDialog.show();
+
+                ok.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent();
+                        EditText userInput = dialolgView.findViewById(R.id.input_text);
+                        String gramm = String.valueOf(userInput.getText());
+                        i.putExtra("prod", selected);
+                        i.putExtra("gramm", gramm);
+                        setResult(RESULT_OK, i);
+                        alertDialog.dismiss();
+                        finish();
+                    }
+                });
                 return true;
             }
         });
@@ -91,7 +99,7 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
                             product.add(ds.getValue(Prod.class));
                         }
-                        Class_prod class_prod = new Class_prod(p, product);
+                        Class_prod class_prod = new Class_prod(p, gramm, product);
                         class_prodList.add(class_prod);
                     }
                     adapter = new ProductsAdapter(Add_Activity.this, class_prodList);

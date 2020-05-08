@@ -114,6 +114,7 @@ public class ProductsAdapter extends BaseExpandableListAdapter{
             {
                 ArrayList<Prod> prodList = class_prod.getClass_prodList();
                 ArrayList<Prod> newList = new ArrayList<Prod>();
+                String gramm = "";
                 for(Prod prod: prodList)
                 {
                     if(prod.getId_product().toLowerCase().contains(query))
@@ -122,7 +123,7 @@ public class ProductsAdapter extends BaseExpandableListAdapter{
                     }
                 }
                 if(newList.size() > 0){
-                    Class_prod nClass_prod = new Class_prod(class_prod.getName(), newList);
+                    Class_prod nClass_prod = new Class_prod(class_prod.getName(), gramm, newList);
                     class_prodsList.add(nClass_prod);
                 }
             }

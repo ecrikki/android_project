@@ -2,23 +2,21 @@ package com.example.calories.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.calories.Add_Activity;
 import com.example.calories.Class.Class_prod;
 import com.example.calories.Class.Prod;
-import com.example.calories.MainActivity;
 import com.example.calories.R;
 
 import java.util.ArrayList;
+
+import static java.lang.Float.parseFloat;
+import static java.lang.Integer.parseInt;
 
 public class ProductsAdapter_main extends BaseExpandableListAdapter{
 
@@ -48,15 +46,19 @@ public class ProductsAdapter_main extends BaseExpandableListAdapter{
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         Prod product = (Prod) getChild(groupPosition, childPosition);
-        if(convertView == null)
-        {
+
+        if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.child_product, null);
+            convertView = layoutInflater.inflate(R.layout.dish, null);
         }
+
         TextView name = convertView.findViewById(R.id.ID);
-        TextView population = convertView.findViewById(R.id.kkal);
+        TextView kkal = convertView.findViewById(R.id.kkal);
+        TextView gramm = convertView.findViewById(R.id.gramm);
         name.setText(product.getId_product().trim());
-        population.setText(product.getКалорийность().trim()  + " " + "ккал/100г");
+        int kkal_gr = (int)Math.round(parseFloat(product.getКалорийность()) / (float)100 * parseFloat(product.getGramm()));
+        kkal.setText(Integer.toString(kkal_gr).trim() + " " + "ккал");
+        gramm.setText(product.getGramm().trim() + " " + "г");
         return convertView;
     }
 
