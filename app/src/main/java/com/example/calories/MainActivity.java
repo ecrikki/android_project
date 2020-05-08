@@ -22,6 +22,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
@@ -30,8 +31,11 @@ public class MainActivity extends AppCompatActivity
     private ProductsAdapter_main adapter;
     private ExpandableListView myList;
     private ArrayList<Class_prod> class_prodList = new ArrayList<>();
-    ArrayList<Prod> product = new ArrayList<>();
-    String[] Array = new String[]{"Завтрак", "Обед", "Ужин", "Другое"};
+    ArrayList<Prod> product0 = new ArrayList<>();
+    ArrayList<Prod> product1 = new ArrayList<>();
+    ArrayList<Prod> product2 = new ArrayList<>();
+    ArrayList<Prod> product3 = new ArrayList<>();
+
     private Button b1, b2, b3, b4;
 
     private int actText, actBk;
@@ -48,13 +52,30 @@ public class MainActivity extends AppCompatActivity
         DateFormat dateFormat = new SimpleDateFormat("EEEE dd MMMM", Locale.getDefault());
         String dateText = dateFormat.format(currentDate);
 
+
         myList = findViewById(R.id.expandableList);
-        for (String time_day: Array) {
-            Class_prod class_prod = new Class_prod(time_day, product);
-            class_prodList.add(class_prod);
-            adapter = new ProductsAdapter_main(this, class_prodList);
-            myList.setAdapter(adapter);
-        }
+
+        Class_prod class_prod = new Class_prod("Завтрак", product0);
+        class_prodList.add(class_prod);
+        adapter = new ProductsAdapter_main(this, class_prodList);
+        myList.setAdapter(adapter);
+
+        class_prod = new Class_prod("Обед", product1);
+        class_prodList.add(class_prod);
+        adapter = new ProductsAdapter_main(this, class_prodList);
+        myList.setAdapter(adapter);
+
+        class_prod = new Class_prod("Ужин", product2);
+        class_prodList.add(class_prod);
+        adapter = new ProductsAdapter_main(this, class_prodList);
+        myList.setAdapter(adapter);
+
+        class_prod = new Class_prod("Другое", product3);
+        class_prodList.add(class_prod);
+        adapter = new ProductsAdapter_main(this, class_prodList);
+        myList.setAdapter(adapter);
+
+        expandAll();
 
         text_date.setText(dateText);
         b1 = findViewById(R.id.button_today);
@@ -126,13 +147,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClick_Add(View view) {
-
-
-        System.out.println(view.getId());
-        //System.out.println("aaaaaaaaaaaaa");
-        //view.getContext();
-        //Intent i = new Intent(MainActivity.this, Add_Activity.class);
-        //startActivityForResult(i, 1);
+        Intent i = new Intent(MainActivity.this, Add_Activity.class);
+        startActivityForResult(i, view.getId());
     }
 
     @Override
@@ -142,11 +158,31 @@ public class MainActivity extends AppCompatActivity
             return;
         }
         Prod prod = (Prod) data.getSerializableExtra("prod");
-        product.add(prod);
-        Class_prod class_prod = new Class_prod("Завтрак", product);
-        class_prodList.add(class_prod);
-        adapter = new ProductsAdapter_main(this, class_prodList);
-        myList.setAdapter(adapter);
+
+        if(requestCode == 0){
+            product0.add(prod);
+            Class_prod class_prod = new Class_prod("Завтрак", product0);
+            class_prodList.add(class_prod);
+            adapter.notifyDataSetChanged();
+        }
+        else if(requestCode == 1){
+            product1.add(prod);
+            Class_prod class_prod = new Class_prod("Обед", product1);
+            class_prodList.add(class_prod);
+            adapter.notifyDataSetChanged();
+        }
+        else if(requestCode == 2){
+            product2.add(prod);
+            Class_prod class_prod = new Class_prod("Ужин", product2);
+            class_prodList.add(class_prod);
+            adapter.notifyDataSetChanged();
+        }
+        else{
+            product3.add(prod);
+            Class_prod class_prod = new Class_prod("Другое", product3);
+            class_prodList.add(class_prod);
+            adapter.notifyDataSetChanged();
+        }
         expandAll();
     }
 

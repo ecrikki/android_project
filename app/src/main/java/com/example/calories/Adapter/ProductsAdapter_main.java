@@ -1,5 +1,6 @@
 package com.example.calories.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -80,6 +81,7 @@ public class ProductsAdapter_main extends BaseExpandableListAdapter{
         return groupPosition;
     }
 
+    @SuppressLint("ResourceType")
     @Override
     public View getGroupView(final int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         Class_prod class_prod = (Class_prod) getGroup(groupPosition);
@@ -91,15 +93,29 @@ public class ProductsAdapter_main extends BaseExpandableListAdapter{
         TextView heading = convertView.findViewById(R.id.heading);
         heading.setText(class_prod.getName().trim());
         ImageView img = convertView.findViewById(R.id.imageView2);
-        img.setImageResource(R.drawable.ic_add_black_24dp);
-        //img.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-                //System.out.println(groupPosition);
-                //img.setId(View.generateViewId());
 
-         //   }
-        //});
+        String name = ((Class_prod) getGroup(groupPosition)).getName();
+
+        if(img != null)
+        {
+            switch (name) {
+                case "Завтрак":
+                    img.setId(0);
+                    //img.setOnClickListener((View.OnClickListener) this);
+                    break;
+                case "Обед":
+                    img.setId(1);
+                    break;
+                case "Ужин":
+                    img.setId(2);
+                    break;
+                case "Другое":
+                    img.setId(3);
+                    break;
+                default:
+                    break;
+            }
+        }
         return convertView;
     }
 
