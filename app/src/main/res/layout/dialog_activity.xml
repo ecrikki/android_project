@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
-    android:padding="10dp" >
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tv"
@@ -16,8 +16,17 @@
     <EditText
         android:id="@+id/input_text"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
+
         <requestFocus />
     </EditText>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="54dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:onClick="onClick_gramm"
+        android:text="Ok" />
 
 </LinearLayout>

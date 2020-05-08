@@ -1,6 +1,8 @@
 package com.example.calories.Class;
 
-public class Prod {
+import java.io.Serializable;
+
+public class Prod implements Serializable {
 
     public String id_product, калорийность;
 

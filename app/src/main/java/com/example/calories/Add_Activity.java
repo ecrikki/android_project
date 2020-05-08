@@ -3,6 +3,7 @@ package com.example.calories;
 import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Add_Activity extends Activity implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
@@ -59,13 +61,19 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 final Prod selected = (Prod) adapter.getChild(groupPosition, childPosition);
-                LayoutInflater li = LayoutInflater.from(Add_Activity.this);
-                View dialolgView = li.inflate(R.layout.dialog_activity, null);
-                AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(Add_Activity.this);
-                mDialogBuilder.setView(dialolgView);
-                final EditText userInput = dialolgView.findViewById(R.id.input_text);
-                AlertDialog alertDialog = mDialogBuilder.create();
-                alertDialog.show();
+               // LayoutInflater li = LayoutInflater.from(Add_Activity.this);
+               // View dialolgView = li.inflate(R.layout.dialog_activity, null);
+               // AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(Add_Activity.this);
+               // mDialogBuilder.setView(dialolgView);
+               // final EditText userInput = dialolgView.findViewById(R.id.input_text);
+               // AlertDialog alertDialog = mDialogBuilder.create();
+               // alertDialog.show();
+               // System.out.println(selected);
+                Intent i = new Intent();
+                i.putExtra("prod", (Serializable) selected);
+                //i.putExtra("kkal", selected.getКалорийность());
+                setResult(RESULT_OK, i);
+                finish();
                 return true;
             }
         });
@@ -85,7 +93,6 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
                         }
                         Class_prod class_prod = new Class_prod(p, product);
                         class_prodList.add(class_prod);
-                        System.out.println(class_prodList);
                     }
                     adapter = new ProductsAdapter(Add_Activity.this, class_prodList);
                     myList.setAdapter(adapter);

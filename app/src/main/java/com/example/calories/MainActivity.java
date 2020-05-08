@@ -1,5 +1,6 @@
 package com.example.calories;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,16 +9,29 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.calories.Adapter.ProductsAdapter;
+import com.example.calories.Adapter.ProductsAdapter_main;
+import com.example.calories.Class.Class_prod;
+import com.example.calories.Class.Prod;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
 {
     private TextView text_date;
+    private ProductsAdapter_main adapter;
+    private ExpandableListView myList;
+    private ArrayList<Class_prod> class_prodList = new ArrayList<>();
+    ArrayList<Prod> product = new ArrayList<>();
+    String[] Array = new String[]{"Завтрак", "Обед", "Ужин", "Другое"};
     private Button b1, b2, b3, b4;
 
     private int actText, actBk;
@@ -29,11 +43,18 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         text_date = findViewById(R.id.textView6);
-        // Текущее время
-        Date currentDate = new Date();
+        Date currentDate = new Date(); // Текущее время
         // Форматирование времени как "день недели.день.месяц"
         DateFormat dateFormat = new SimpleDateFormat("EEEE dd MMMM", Locale.getDefault());
         String dateText = dateFormat.format(currentDate);
+
+        myList = findViewById(R.id.expandableList);
+        for (String time_day: Array) {
+            Class_prod class_prod = new Class_prod(time_day, product);
+            class_prodList.add(class_prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
 
         text_date.setText(dateText);
         b1 = findViewById(R.id.button_today);
@@ -105,7 +126,35 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClick_Add(View view) {
-        Intent i = new Intent(MainActivity.this, Add_Activity.class);
-        startActivity(i);
+
+
+        System.out.println(view.getId());
+        //System.out.println("aaaaaaaaaaaaa");
+        //view.getContext();
+        //Intent i = new Intent(MainActivity.this, Add_Activity.class);
+        //startActivityForResult(i, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) {
+            return;
+        }
+        Prod prod = (Prod) data.getSerializableExtra("prod");
+        product.add(prod);
+        Class_prod class_prod = new Class_prod("Завтрак", product);
+        class_prodList.add(class_prod);
+        adapter = new ProductsAdapter_main(this, class_prodList);
+        myList.setAdapter(adapter);
+        expandAll();
+    }
+
+    private void expandAll(){
+        int count = adapter.getGroupCount();
+        for(int i = 0; i < count; i++)
+        {
+            myList.expandGroup(i);
+        }
     }
 }
