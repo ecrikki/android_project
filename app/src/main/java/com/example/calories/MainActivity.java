@@ -95,6 +95,10 @@ public class MainActivity extends AppCompatActivity
         b2.setBackgroundResource(R.color.Bard);
         b3.setBackgroundResource(R.color.Bard);
         b4.setBackgroundResource(R.color.Bard);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.logo_small);
     }
 
     public void onClick_Today(View view) {
