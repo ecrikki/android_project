@@ -3,12 +3,13 @@
     android:id="@+id/layout_root"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/custombackground"
     android:orientation="vertical"
     android:padding="10dp">
 
     <TextView
         android:id="@+id/tv"
-        android:layout_width="wrap_content"
+        android:layout_width="216dp"
         android:layout_height="wrap_content"
         android:text="Введите вес порции (в граммах): "
         android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -17,7 +18,6 @@
         android:id="@+id/input_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <requestFocus />
     </EditText>
 
@@ -27,6 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:onClick="onClick_gramm"
-        android:text="Ok" />
+        android:text="Ok"
+        android:theme="@style/noClicks" />
+        />
 
 </LinearLayout>

@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/Peach</item>
         <item name="colorPrimaryDark">@color/Bard</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/Bard</item>
         <!--Убрать статс сверху-->
         <item name="android:windowFullscreen">true</item>
     </style>
@@ -17,5 +17,4 @@
         <item name="colorButtonNormal">@color/Peach</item>
         <item name="android:textColor">@color/Bard</item>
     </style>
-
 </resources>
