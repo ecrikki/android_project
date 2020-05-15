@@ -1,16 +1,20 @@
 package com.example.calories;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -61,25 +65,80 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
             @Override
             public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 final Prod selected = (Prod) adapter.getChild(groupPosition, childPosition);
-                LayoutInflater li = LayoutInflater.from(Add_Activity.this);
-                final View dialolgView = li.inflate(R.layout.dialog_activity, null);
-                AlertDialog.Builder mDialogBuilder = new AlertDialog.Builder(Add_Activity.this);
-                mDialogBuilder.setView(dialolgView);
-                Button ok = dialolgView.findViewById(R.id.button2);
-                final AlertDialog alertDialog = mDialogBuilder.create();
+
+                LayoutInflater inflater = LayoutInflater.from(Add_Activity.this);
+                final View dialogView = inflater.inflate(R.layout.dialog_activity, null);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Add_Activity.this);
+                builder.setView(dialogView);
+
+                Button ok = dialogView.findViewById(R.id.ok);
+                Button cancel = dialogView.findViewById(R.id.cancel);
+
+                ImageView left = dialogView.findViewById(R.id.imageView3);
+                ImageView right = dialogView.findViewById(R.id.imageView4);
+                left.setImageResource(R.drawable.ic_chevron_left_black_24dp);
+                right.setImageResource(R.drawable.ic_chevron_right_black_24dp);
+
+                final AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
                 ok.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent();
-                        EditText userInput = dialolgView.findViewById(R.id.input_text);
+                        EditText userInput = dialogView.findViewById(R.id.input_text);
                         String gramm = String.valueOf(userInput.getText());
-                        i.putExtra("prod", selected);
-                        i.putExtra("gramm", gramm);
-                        setResult(RESULT_OK, i);
+                        if (gramm.length() != 0) {
+                            i.putExtra("prod", selected);
+                            i.putExtra("gramm", gramm);
+                            setResult(RESULT_OK, i);
+                            alertDialog.dismiss();
+                            finish();
+                        }
+                    }
+                });
+
+                cancel.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
                         alertDialog.dismiss();
-                        finish();
+                    }
+                });
+
+                left.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        EditText userInput = dialogView.findViewById(R.id.input_text);
+                        String gramm = String.valueOf(userInput.getText());
+                        if (gramm.length() != 0) {
+                            int gr = Integer.parseInt(gramm);
+                            gr = gr - 10;
+                            if (gr > 0){
+                                userInput.setText(Integer.toString(gr));
+                            }
+                            else{
+                                userInput.setText(Integer.toString(0));
+                            }
+                        }
+                        else{
+                            userInput.setText(Integer.toString(0));
+                        }
+                    }
+                });
+
+                right.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        EditText userInput = dialogView.findViewById(R.id.input_text);
+                        String gramm = String.valueOf(userInput.getText());
+                        if (gramm.length() != 0) {
+                            int gr = Integer.parseInt(gramm);
+                            gr = gr + 10;
+                            userInput.setText(Integer.toString(gr));
+                        }
+                        else{
+                            userInput.setText(Integer.toString(10));
+                        }
                     }
                 });
                 return true;

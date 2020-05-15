@@ -103,7 +103,6 @@ public class ProductsAdapter_main extends BaseExpandableListAdapter{
             switch (name) {
                 case "Завтрак":
                     img.setId(0);
-                    //img.setOnClickListener((View.OnClickListener) this);
                     break;
                 case "Обед":
                     img.setId(1);

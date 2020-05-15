@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.calories.Adapter.ProductsAdapter_main;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity
     ArrayList<Prod> product1 = new ArrayList<>();
     ArrayList<Prod> product2 = new ArrayList<>();
     ArrayList<Prod> product3 = new ArrayList<>();
-    private String gramm;
+    private String gramm = "";
 
     private Button b1, b2, b3, b4;
 
