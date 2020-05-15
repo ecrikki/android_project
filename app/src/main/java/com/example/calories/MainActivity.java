@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         text_date = findViewById(R.id.textView6);
         sum_kkal = findViewById(R.id.sum_kkal);
         Date currentDate = new Date(); // Текущее время
@@ -80,75 +81,24 @@ public class MainActivity extends AppCompatActivity
 
         expandAll();
 
-        b1 = findViewById(R.id.button_today);
-        b2 = findViewById(R.id.button_history);
-        b3 = findViewById(R.id.button_parameters);
-        b4 = findViewById(R.id.button_settings);
-
-        actText =  getResources().getColor(R.color.Bard);
-        actBk   = getResources().getColor(R.color.Peach);
-        naText = getResources().getColor(R.color.Peach);
-        naBk = getResources().getColor(R.color.Bard);
-
-        b1.setBackgroundColor(actBk);
-        b1.setTextColor(actText);
-
-        b2.setBackgroundResource(R.color.Bard);
-        b3.setBackgroundResource(R.color.Bard);
-        b4.setBackgroundResource(R.color.Bard);
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setLogo(R.drawable.logo_small);
     }
 
     public void onClick_Today(View view) {
-        b3.setBackgroundColor(naBk);
-        b3.setTextColor(naText);
-        b4.setBackgroundColor(naBk);
-        b4.setTextColor(naText);
 
-        b1.setBackgroundColor(actBk);
-        b1.setTextColor(actText);
-        b2.setBackgroundColor(naBk);
-        b2.setTextColor(naText);
-        b3.setBackgroundResource(R.color.Bard);
-        b4.setBackgroundResource(R.color.Bard);
     }
 
     public void onClick_History(View view) {
-        b2.setBackgroundColor(actBk);
-        b2.setTextColor(actText);
 
-        b1.setBackgroundColor(naBk);
-        b1.setTextColor(naText);
-        b3.setBackgroundColor(naBk);
-        b3.setTextColor(naText);
-        b4.setBackgroundColor(naBk);
-        b4.setTextColor(naText);
     }
 
     public void onClick_Parameters(View view) {
-        b3.setBackgroundColor(actBk);
-        b3.setTextColor(actText);
 
-        b1.setBackgroundColor(naBk);
-        b1.setTextColor(naText);
-        b2.setBackgroundColor(naBk);
-        b2.setTextColor(naText);
-        b4.setBackgroundColor(naBk);
-        b4.setTextColor(naText);
     }
 
     public void onClick_Settings(View view) {
-        b4.setBackgroundColor(actBk);
-        b4.setTextColor(actText);
-        b1.setBackgroundColor(naBk);
-        b1.setTextColor(naText);
-        b2.setBackgroundColor(naBk);
-        b2.setTextColor(naText);
-        b3.setBackgroundColor(naBk);
-        b3.setTextColor(naText);
 
     }
 

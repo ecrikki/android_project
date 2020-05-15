@@ -29,8 +29,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_main"
+            android:focusableInTouchMode="true"
             android:onClick="onClick_Today"
+            android:selectAllOnFocus="false"
             android:text="@string/button_today"
+            android:textColor="@drawable/button_text_main"
             android:theme="@style/noClicks" />
 
         <Button
@@ -38,8 +42,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_main"
+            android:focusableInTouchMode="true"
             android:onClick="onClick_History"
             android:text="@string/button_history"
+            android:textColor="@drawable/button_text_main"
             android:theme="@style/noClicks" />
 
         <Button
@@ -47,8 +54,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_main"
+            android:focusableInTouchMode="true"
             android:onClick="onClick_Parameters"
             android:text="@string/button_parameters"
+            android:textColor="@drawable/button_text_main"
             android:theme="@style/noClicks" />
 
         <Button
@@ -56,8 +66,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_main"
+            android:focusableInTouchMode="true"
             android:onClick="onClick_Settings"
             android:text="@string/button_settings"
+            android:textColor="@drawable/button_text_main"
             android:theme="@style/noClicks" />
 
     </LinearLayout>
