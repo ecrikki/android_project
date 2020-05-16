@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,10 @@ import android.widget.TextView;
 import com.example.calories.Adapter.ProductsAdapter_main;
 import com.example.calories.Class.Class_prod;
 import com.example.calories.Class.Prod;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,17 +41,19 @@ public class MainActivity extends AppCompatActivity
     ArrayList<Prod> product2 = new ArrayList<>();
     ArrayList<Prod> product3 = new ArrayList<>();
     private String gramm = "";
-
-    private Button b1, b2, b3, b4;
-
-    private int actText, actBk;
-    private  int naText , naBk;
+    SharedPreferences sPref;
+    String[] Array = new String[]{"Завтрак", "Обед", "Ужин", "Другое"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+       //  sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
+        // SharedPreferences.Editor editor = sPref.edit();
+       //  editor.clear();
+       //  editor.apply();
 
         text_date = findViewById(R.id.textView6);
         sum_kkal = findViewById(R.id.sum_kkal);
@@ -59,26 +65,61 @@ public class MainActivity extends AppCompatActivity
 
         myList = findViewById(R.id.expandableList);
 
-        Class_prod class_prod = new Class_prod("Завтрак", gramm, product0);
-        class_prodList.add(class_prod);
-        adapter = new ProductsAdapter_main(this, class_prodList);
-        myList.setAdapter(adapter);
+        Class_prod prod = Get("Завтрак");
+        if (prod != null) {
+            product0 = prod.getClass_prodList();
+            class_prodList.add(prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
+        else{
+            Class_prod class_prod = new Class_prod("Завтрак", gramm, product0);
+            class_prodList.add(class_prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
 
-        class_prod = new Class_prod("Обед", gramm, product1);
-        class_prodList.add(class_prod);
-        adapter = new ProductsAdapter_main(this, class_prodList);
-        myList.setAdapter(adapter);
+        prod = Get("Обед");
+        if (prod != null) {
+            product1 = prod.getClass_prodList();
+            class_prodList.add(prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
+        else{
+            Class_prod class_prod = new Class_prod("Обед", gramm, product1);
+            class_prodList.add(class_prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
 
-        class_prod = new Class_prod("Ужин", gramm, product2);
-        class_prodList.add(class_prod);
-        adapter = new ProductsAdapter_main(this, class_prodList);
-        myList.setAdapter(adapter);
+        prod = Get("Ужин");
+        if (prod != null) {
+            product2 = prod.getClass_prodList();
+            class_prodList.add(prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
+        else{
+            Class_prod class_prod = new Class_prod("Ужин", gramm, product2);
+            class_prodList.add(class_prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
 
-        class_prod = new Class_prod("Другое", gramm, product3);
-        class_prodList.add(class_prod);
-        adapter = new ProductsAdapter_main(this, class_prodList);
-        myList.setAdapter(adapter);
-
+        prod = Get("Другое");
+        if (prod != null) {
+            product3 = prod.getClass_prodList();
+            class_prodList.add(prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
+        else{
+            Class_prod class_prod = new Class_prod("Другое", gramm, product3);
+            class_prodList.add(class_prod);
+            adapter = new ProductsAdapter_main(this, class_prodList);
+            myList.setAdapter(adapter);
+        }
         expandAll();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -120,31 +161,55 @@ public class MainActivity extends AppCompatActivity
         if(requestCode == 0){
             product0.add(prod);
             Class_prod class_prod = new Class_prod("Завтрак", gramm, product0);
-            class_prodList.add(class_prod);
+            Save(class_prod, "Завтрак");
+            class_prodList.set(0, class_prod);
+            // class_prodList.add(class_prod);
             adapter.notifyDataSetChanged();
         }
         else if(requestCode == 1){
             product1.add(prod);
             Class_prod class_prod = new Class_prod("Обед", gramm, product1);
-            class_prodList.add(class_prod);
+            Save(class_prod, "Обед");
+            class_prodList.set(1, class_prod);
             adapter.notifyDataSetChanged();
         }
         else if(requestCode == 2){
             product2.add(prod);
             Class_prod class_prod = new Class_prod("Ужин", gramm, product2);
-            class_prodList.add(class_prod);
+            Save(class_prod, "Ужин");
+            class_prodList.set(2, class_prod);
             adapter.notifyDataSetChanged();
         }
         else{
             product3.add(prod);
             Class_prod class_prod = new Class_prod("Другое", gramm, product3);
-            class_prodList.add(class_prod);
+            Save(class_prod, "Другое");
+            class_prodList.set(3, class_prod);
             adapter.notifyDataSetChanged();
         }
         expandAll();
 
         kkal_gr += Math.round(parseFloat(prod.getКалорийность()) / (float)100 * parseFloat(prod.getGramm()));
         sum_kkal.setText("Всего:" + " " + Integer.toString(kkal_gr).trim() + " " + "ккал");
+    }
+
+    private void Save(Class_prod class_prod, String day){
+        sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(class_prod);
+        editor.putString(day, json);
+        editor.apply();
+    }
+
+    private Class_prod Get(String day) {
+        sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sPref.getString(day, "");
+        Type type = new TypeToken<Class_prod>() {
+        }.getType();
+        Class_prod class_prodList_get = gson.fromJson(json, type);
+        return class_prodList_get;
     }
 
     private void expandAll(){
