@@ -117,7 +117,7 @@
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:gravity="center"
             android:text="@string/text_today"
             android:textSize="18sp" />
@@ -126,9 +126,10 @@
             android:id="@+id/sum_kkal"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="0.3"
             android:gravity="center"
-            android:text="Всего: 0 ккал" />
+            android:text="Всего: 0 ккал"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

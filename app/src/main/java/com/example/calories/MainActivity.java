@@ -30,7 +30,6 @@ import static java.lang.Float.parseFloat;
 
 public class MainActivity extends AppCompatActivity
 {
-    private TextView text_date;
     private int kkal_gr = 0;
     private TextView sum_kkal;
     private ProductsAdapter_main adapter;
@@ -40,9 +39,7 @@ public class MainActivity extends AppCompatActivity
     ArrayList<Prod> product1 = new ArrayList<>();
     ArrayList<Prod> product2 = new ArrayList<>();
     ArrayList<Prod> product3 = new ArrayList<>();
-    private String gramm = "";
     SharedPreferences sPref;
-    String[] Array = new String[]{"Завтрак", "Обед", "Ужин", "Другое"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -50,12 +47,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       //  sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
-        // SharedPreferences.Editor editor = sPref.edit();
-       //  editor.clear();
-       //  editor.apply();
-
-        text_date = findViewById(R.id.textView6);
+        TextView text_date = findViewById(R.id.textView6);
         sum_kkal = findViewById(R.id.sum_kkal);
         Date currentDate = new Date(); // Текущее время
         // Форматирование времени как "день недели.день.месяц"
@@ -63,9 +55,19 @@ public class MainActivity extends AppCompatActivity
         String dateText = dateFormat.format(currentDate);
         text_date.setText(dateText);
 
+        String date = Get_date();
+        if (date == null){
+            Save_date(dateText);
+        }
+        else if (!date.equals(dateText)){
+            Clear();
+            Save_date(dateText);
+        }
+
         myList = findViewById(R.id.expandableList);
 
         Class_prod prod = Get("Завтрак");
+        String gramm = "";
         if (prod != null) {
             product0 = prod.getClass_prodList();
             class_prodList.add(prod);
@@ -163,7 +165,6 @@ public class MainActivity extends AppCompatActivity
             Class_prod class_prod = new Class_prod("Завтрак", gramm, product0);
             Save(class_prod, "Завтрак");
             class_prodList.set(0, class_prod);
-            // class_prodList.add(class_prod);
             adapter.notifyDataSetChanged();
         }
         else if(requestCode == 1){
@@ -193,6 +194,24 @@ public class MainActivity extends AppCompatActivity
         sum_kkal.setText("Всего:" + " " + Integer.toString(kkal_gr).trim() + " " + "ккал");
     }
 
+    private void Clear(){
+        sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPref.edit();
+        editor.clear().apply();
+    }
+
+    private void Save_date(String dateText){
+        sPref = getSharedPreferences("date", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPref.edit();
+        editor.putString("Дата", dateText);
+        editor.apply();
+    }
+
+    private String Get_date() {
+        sPref = getSharedPreferences("date", MODE_PRIVATE);
+        return sPref.getString("Дата", "");
+    }
+
     private void Save(Class_prod class_prod, String day){
         sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
         SharedPreferences.Editor editor = sPref.edit();
@@ -208,8 +227,7 @@ public class MainActivity extends AppCompatActivity
         String json = sPref.getString(day, "");
         Type type = new TypeToken<Class_prod>() {
         }.getType();
-        Class_prod class_prodList_get = gson.fromJson(json, type);
-        return class_prodList_get;
+        return gson.fromJson(json, type);
     }
 
     private void expandAll(){
