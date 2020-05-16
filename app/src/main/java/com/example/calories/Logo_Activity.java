@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 
 public class Logo_Activity extends Activity {
-    private Animation Logo_anim;
-    private ImageView Logo_image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +22,11 @@ public class Logo_Activity extends Activity {
 
     private void anim(){
         //загружаем анимацию в переменную
-        Logo_anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.logo_anim);
+        Animation logo_anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.logo_anim);
         //находим картинку
-        Logo_image = findViewById(R.id.imageView);
+        ImageView logo_image = findViewById(R.id.imageView);
         //Запускаем анимацию
-        Logo_image.startAnimation(Logo_anim);
+        logo_image.startAnimation(logo_anim);
     }
 
     private void startMainActivity() {

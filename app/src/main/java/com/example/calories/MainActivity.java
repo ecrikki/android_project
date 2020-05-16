@@ -138,7 +138,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClick_Parameters(View view) {
-
+        Intent i = new Intent(MainActivity.this, Parameter_Activity.class);
+        startActivity(i);
     }
 
     public void onClick_Settings(View view) {
