@@ -6,11 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.calories.Adapter.ProductsAdapter_main;
@@ -65,6 +62,12 @@ public class MainActivity extends AppCompatActivity
         }
 
         myList = findViewById(R.id.expandableList);
+
+        int sum = Get_sum();
+        if (sum != 0) {
+            kkal_gr = sum;
+            sum_kkal.setText("Всего:" + " " + sum + " " + "ккал");
+        }
 
         Class_prod prod = Get("Завтрак");
         String gramm = "";
@@ -192,7 +195,8 @@ public class MainActivity extends AppCompatActivity
         expandAll();
 
         kkal_gr += Math.round(parseFloat(prod.getКалорийность()) / (float)100 * parseFloat(prod.getGramm()));
-        sum_kkal.setText("Всего:" + " " + Integer.toString(kkal_gr).trim() + " " + "ккал");
+        sum_kkal.setText("Всего:" + " " + kkal_gr + " " + "ккал");
+        Save_sum(kkal_gr);
     }
 
     private void Clear(){
@@ -229,6 +233,18 @@ public class MainActivity extends AppCompatActivity
         Type type = new TypeToken<Class_prod>() {
         }.getType();
         return gson.fromJson(json, type);
+    }
+
+    private void Save_sum(Integer sum_k) {
+        sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPref.edit();
+        editor.putInt("сумма", sum_k);
+        editor.apply();
+    }
+
+    private int Get_sum() {
+        sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
+        return sPref.getInt("сумма", 0);
     }
 
     private void expandAll(){
