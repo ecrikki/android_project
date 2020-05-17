@@ -1,16 +1,10 @@
 package com.example.calories;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.app.SearchManager;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
@@ -34,7 +28,6 @@ import java.util.ArrayList;
 
 public class Add_Activity extends Activity implements SearchView.OnQueryTextListener, SearchView.OnCloseListener {
 
-    private SearchView search;
     private ProductsAdapter adapter;
     private ExpandableListView myList;
     private ArrayList<Class_prod> class_prodList = new ArrayList<>();
@@ -48,7 +41,7 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
         setContentView(R.layout.add_activity);
 
         myList = findViewById(R.id.expandableList);
-        search = findViewById(R.id.search);
+        SearchView search = findViewById(R.id.search);
         search.setIconifiedByDefault(false);
         search.setOnQueryTextListener(this);
         search.setOnCloseListener(this);
@@ -67,7 +60,7 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
                 final Prod selected = (Prod) adapter.getChild(groupPosition, childPosition);
 
                 LayoutInflater inflater = LayoutInflater.from(Add_Activity.this);
-                final View dialogView = inflater.inflate(R.layout.dialog_activity, null);
+                final View dialogView = inflater.inflate(R.layout.dialog, null);
                 AlertDialog.Builder builder = new AlertDialog.Builder(Add_Activity.this);
                 builder.setView(dialogView);
 
@@ -141,7 +134,7 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
                         }
                     }
                 });
-                return true;
+                return false;
             }
         });
     }

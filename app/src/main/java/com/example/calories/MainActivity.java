@@ -1,14 +1,21 @@
 package com.example.calories;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.calories.Adapter.ProductsAdapter_main;
 import com.example.calories.Class.Class_prod;
@@ -126,6 +133,7 @@ public class MainActivity extends AppCompatActivity
             myList.setAdapter(adapter);
         }
         expandAll();
+        Delete_prod();
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
@@ -245,6 +253,51 @@ public class MainActivity extends AppCompatActivity
     private int Get_sum() {
         sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
         return sPref.getInt("сумма", 0);
+    }
+
+    private void Delete_prod() {
+        myList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
+                    int groupPosition = ExpandableListView.getPackedPositionGroup(id);
+                    int childPosition = ExpandableListView.getPackedPositionChild(id);
+                    System.out.println(groupPosition);
+                    System.out.println(childPosition);
+
+                    final Prod selected = (Prod) adapter.getChild(groupPosition, childPosition);
+
+                    LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+                    final View dialogView = inflater.inflate(R.layout.dialog_delet, null);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setView(dialogView);
+
+                    Button yes = dialogView.findViewById(R.id.yes);
+                    Button cancel = dialogView.findViewById(R.id.no);
+
+                    ImageView question = dialogView.findViewById(R.id.imageView3);
+                    question.setImageResource(R.drawable.ic_help_outline_black_24dp);
+
+                    final AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+
+                    yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
+
+                    cancel.setOnClickListener(new View.OnClickListener(){
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.dismiss();
+                        }
+                    });
+                }
+                return false;
+            }
+        });
     }
 
     private void expandAll(){
