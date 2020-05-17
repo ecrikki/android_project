@@ -262,10 +262,10 @@ public class MainActivity extends AppCompatActivity
                 if (ExpandableListView.getPackedPositionType(id) == ExpandableListView.PACKED_POSITION_TYPE_CHILD) {
                     int groupPosition = ExpandableListView.getPackedPositionGroup(id);
                     int childPosition = ExpandableListView.getPackedPositionChild(id);
-                    System.out.println(groupPosition);
-                    System.out.println(childPosition);
+
 
                     final Prod selected = (Prod) adapter.getChild(groupPosition, childPosition);
+                    final Class_prod eat = (Class_prod) adapter.getGroup(groupPosition);
 
                     LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
                     final View dialogView = inflater.inflate(R.layout.dialog_delet, null);
@@ -273,10 +273,10 @@ public class MainActivity extends AppCompatActivity
                     builder.setView(dialogView);
 
                     Button yes = dialogView.findViewById(R.id.yes);
-                    Button cancel = dialogView.findViewById(R.id.no);
+                    final Button cancel = dialogView.findViewById(R.id.no);
 
-                    ImageView question = dialogView.findViewById(R.id.imageView3);
-                    question.setImageResource(R.drawable.ic_help_outline_black_24dp);
+                    TextView question = dialogView.findViewById(R.id.text);
+                    question.setText("Вы действительно хотите удалить продукт" + " " + "(" + selected.getId_product() + ")?");
 
                     final AlertDialog alertDialog = builder.create();
                     alertDialog.show();
@@ -284,6 +284,38 @@ public class MainActivity extends AppCompatActivity
                     yes.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            String gramm = "";
+                            if (eat.getName().equals("Завтрак")){
+                                product0.remove(selected);
+                                Class_prod class_prod = new Class_prod("Завтрак", gramm, product0);
+                                Save(class_prod, "Завтрак");
+                                class_prodList.set(0, class_prod);
+                                adapter.notifyDataSetChanged();
+                            }
+                            else if (eat.getName().equals("Обед")){
+                                product1.remove(selected);
+                                Class_prod class_prod = new Class_prod("Обед", gramm, product1);
+                                Save(class_prod, "Обед");
+                                class_prodList.set(1, class_prod);
+                                adapter.notifyDataSetChanged();
+                            }
+                            else if (eat.getName().equals("Ужин")){
+                                product2.remove(selected);
+                                Class_prod class_prod = new Class_prod("Ужин", gramm, product2);
+                                Save(class_prod, "Ужин");
+                                class_prodList.set(2, class_prod);
+                                adapter.notifyDataSetChanged();
+                            }
+                            else {
+                                product3.remove(selected);
+                                Class_prod class_prod = new Class_prod("Другое", gramm, product3);
+                                Save(class_prod, "Другое");
+                                class_prodList.set(3, class_prod);
+                                adapter.notifyDataSetChanged();
+                            }
+                            kkal_gr -= Math.round(parseFloat(selected.getКалорийность()) / (float)100 * parseFloat(selected.getGramm()));
+                            sum_kkal.setText("Всего:" + " " + kkal_gr + " " + "ккал");
+                            Save_sum(kkal_gr);
                             alertDialog.dismiss();
                         }
                     });
