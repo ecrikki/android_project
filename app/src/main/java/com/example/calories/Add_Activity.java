@@ -69,8 +69,8 @@ public class Add_Activity extends Activity implements SearchView.OnQueryTextList
 
                 ImageView left = dialogView.findViewById(R.id.imageView3);
                 ImageView right = dialogView.findViewById(R.id.imageView4);
-                left.setImageResource(R.drawable.ic_chevron_left_black_24dp);
-                right.setImageResource(R.drawable.ic_chevron_right_black_24dp);
+                left.setImageResource(R.drawable.left_arrow);
+                right.setImageResource(R.drawable.right_arrow);
 
                 final AlertDialog alertDialog = builder.create();
                 alertDialog.show();

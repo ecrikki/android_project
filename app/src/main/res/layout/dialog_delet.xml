@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:layout_weight="0.3"
-            app:srcCompat="@drawable/ic_help_outline_black_24dp" />
+            app:srcCompat="@drawable/question_delete" />
 
         <TextView
             android:id="@+id/text"

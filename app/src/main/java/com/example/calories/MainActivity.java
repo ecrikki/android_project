@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity
                     builder.setView(dialogView);
 
                     Button yes = dialogView.findViewById(R.id.yes);
-                    final Button cancel = dialogView.findViewById(R.id.no);
+                    Button no = dialogView.findViewById(R.id.no);
 
                     TextView question = dialogView.findViewById(R.id.text);
                     question.setText("Вы действительно хотите удалить продукт" + " " + "(" + selected.getId_product() + ")?");
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity
                         }
                     });
 
-                    cancel.setOnClickListener(new View.OnClickListener(){
+                    no.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View v) {
                             alertDialog.dismiss();
