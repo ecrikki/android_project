@@ -119,6 +119,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
+            android:textColor="#401212"
             android:text="@string/text_today"
             android:textSize="18sp" />
 
@@ -128,6 +129,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:gravity="center"
+            android:textColor="#401212"
             android:text="Всего: 0 ккал"
             android:textSize="18sp" />
     </LinearLayout>

@@ -1,10 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/parameter_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/custombackground"
     tools:context=".Parameter_Activity">
 
-</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="415dp"
+        android:layout_height="724dp"
+        android:orientation="vertical"
+
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="Расчет суточной нормы калорий"
+            android:textColor="#401212"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="6"
+            android:gravity="center_horizontal"
+            android:hint="вес (кг)"
+            android:inputType="number"
+            android:textSize="20sp"
+            tools:layout_editor_absoluteX="92dp"
+            tools:layout_editor_absoluteY="114dp" />
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="6"
+            android:gravity="center_horizontal"
+            android:hint="рост (см)"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="6"
+            android:gravity="center_horizontal"
+            android:hint="возраст (лет)"
+            android:inputType="number"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Пол"
+            android:textColor="#401212"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_w"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:checked="true"
+                android:text="ж"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radio_m"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="м"
+                android:textSize="20sp" />
+
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="Уровень активности"
+            android:textColor="#401212"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_1"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:checked="true"
+                android:text="Минимальный"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radio_2"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Низкий"
+                android:textSize="18sp" />
+            <RadioButton
+                android:id="@+id/radio_3"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Средний"
+                android:textSize="18sp" />
+            <RadioButton
+                android:id="@+id/radio_4"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Высокий"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:id="@+id/radio_5"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Очень высокий"
+                android:textSize="18sp" />
+
+        </RadioGroup>
+
+
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/button_norm"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_dialog"
+            android:layout_gravity="center"
+            android:text="Рассчитать" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
