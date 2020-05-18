@@ -13,11 +13,11 @@
 
         <TextView
             android:id="@+id/ID"
-            android:paddingStart="55dp"
             android:layout_width="273dp"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="sample"
+            android:paddingStart="55dp"
+            android:text="@string/sample"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:padding="10dp"
-            android:text="sample"
+            android:text="@string/sample"
             android:textSize="18sp" />
     </LinearLayout>
 </FrameLayout>

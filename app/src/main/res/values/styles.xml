@@ -3,9 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/Peach</item>
-        <item name="colorPrimaryDark">@color/Bard</item>
-        <item name="colorAccent">@color/Bard</item>
+        <item name="colorPrimary">@color/peach</item>
+        <item name="colorPrimaryDark">@color/bard</item>
         <!--Убрать статс сверху-->
         <item name="android:windowFullscreen">true</item>
     </style>

@@ -4,12 +4,15 @@
     <string name="button_history">History</string>
     <string name="button_parameters">Parameters</string>
     <string name="button_settings">Settings</string>
-    <string name="Ок">Ок</string>
-    <string name="Отмена">Отмена</string>
-    <string name="text_dinner">Dinner</string>
-    <string name="text_other">Other</string>
+    <string name="ok">Ок</string>
+    <string name="cancel">Отмена</string>
     <string name="text_today">Data</string>
-    <string name="text_dish">Add Dish</string>
-    <string name="dish_search">dish search</string>
-    <string name="textview">TextView</string>
+    <string name="sample">Sample</string>
+    <string name="sum_k">Всего: 0 ккал</string>
+    <string name="dialog">Введите вес порции (в граммах):</string>
+    <string name="kkal">0</string>
+    <string name="dialog_delete">Подтвердить удаление</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 </resources>
+

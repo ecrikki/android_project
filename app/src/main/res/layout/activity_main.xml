@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/B"
+        android:background="@color/menu"
         app:itemIconSize="24dp"
         app:itemIconTint="@drawable/menu_color"
         app:itemTextColor="@drawable/menu_color"
@@ -43,7 +43,6 @@
             android:id="@+id/expandableList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
             android:layout_marginBottom="8dp" />
 
     </LinearLayout>
@@ -55,7 +54,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="#F1E8CE"
+        android:background="@color/layout"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +68,7 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:gravity="center"
-            android:textColor="#401212"
+            android:textColor="@color/bard"
             android:text="@string/text_today"
             android:textSize="18sp" />
 
@@ -79,8 +78,8 @@
             android:layout_height="match_parent"
             android:layout_weight="0.3"
             android:gravity="center"
-            android:textColor="#401212"
-            android:text="Всего: 0 ккал"
+            android:text="@string/sum_k"
+            android:textColor="@color/bard"
             android:textSize="18sp" />
     </LinearLayout>
 

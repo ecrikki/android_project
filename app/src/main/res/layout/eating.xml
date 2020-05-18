@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:paddingStart="40dp"
-        android:text="Eating"
-        android:textColor="#401212"
+        android:text="@string/sample"
         android:textSize="22sp"
         android:textStyle="bold" />
 
@@ -21,12 +20,12 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_gravity="bottom"
-        android:background="#000" />
+        android:background="@color/black" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#000" />
+        android:background="@color/black" />
 
     <ImageView
         android:id="@+id/imageView2"

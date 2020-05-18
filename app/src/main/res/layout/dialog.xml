@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="Введите вес порции (в граммах): "
+        android:text="@string/dialog"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <View
@@ -47,7 +47,7 @@
             android:layout_weight="0.3"
             android:elegantTextHeight="false"
             android:gravity="center_horizontal"
-            android:hint="0"
+            android:hint="@string/kkal"
             android:inputType="number"
             android:textSize="24sp" />
 
@@ -75,7 +75,7 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="0.5"
             android:background="@drawable/button_dialog"
-            android:text="@string/Отмена" />
+            android:text="@string/cancel" />
 
         <Button
             android:id="@+id/ok"
@@ -85,7 +85,7 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="0.5"
             android:background="@drawable/button_dialog"
-            android:text="@string/Ок" />
+            android:text="@string/ok" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#050505</color>
-    <color name="Peach">#E3CD8D</color>
-    <color name="Bard">#450303</color>
-    <color name="B">#f0cfad</color>
+    <color name="peach">#E3CD8D</color>
+    <color name="bard_question">#660808</color>
+    <color name="bard">#450303</color>
+    <color name="grey_bard">#59450303</color>
+    <color name="click">#f0cfad</color>
+    <color name="menu">#ECCAA3</color>
+    <color name="layout">#F1E8CE</color>
 </resources>
