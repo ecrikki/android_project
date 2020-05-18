@@ -1,6 +1,5 @@
 package com.example.calories;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,16 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-
-public class Parameter_Activity extends AppCompatActivity {
-
+public class Settings_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.parameter_activity);
+        setContentView(R.layout.settings_activity);
 
         BottomNavigationView menu = findViewById(R.id.menu);
-        menu.setSelectedItemId(R.id.parameters);
+        menu.setSelectedItemId(R.id.settings);
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -35,11 +32,11 @@ public class Parameter_Activity extends AppCompatActivity {
                     return true;
                 }
                 else if(item.getItemId() == R.id.parameters){
+                    startActivity(new Intent(getApplicationContext(), Parameter_Activity.class));
+                    overridePendingTransition(0, 0);
                     return true;
                 }
                 else if(item.getItemId() == R.id.settings){
-                    startActivity(new Intent(getApplicationContext(), Settings_Activity.class));
-                    overridePendingTransition(0, 0);
                     return true;
                 }
                 return false;

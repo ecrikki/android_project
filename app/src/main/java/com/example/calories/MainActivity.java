@@ -1,5 +1,6 @@
 package com.example.calories;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,10 +10,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,7 @@ import android.widget.Toast;
 import com.example.calories.Adapter.ProductsAdapter_main;
 import com.example.calories.Class.Class_prod;
 import com.example.calories.Class.Prod;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -50,6 +54,35 @@ public class MainActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BottomNavigationView menu = findViewById(R.id.menu);
+        menu.setSelectedItemId(R.id.today);
+        menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.today){
+                    return true;
+                }
+                else if(item.getItemId() == R.id.history){
+                    startActivity(new Intent(getApplicationContext(), History_Activity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                else if(item.getItemId() == R.id.parameters){
+                    startActivity(new Intent(getApplicationContext(), Parameter_Activity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                else if(item.getItemId() == R.id.settings){
+                    startActivity(new Intent(getApplicationContext(), Settings_Activity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
 
         TextView text_date = findViewById(R.id.textView6);
         sum_kkal = findViewById(R.id.sum_kkal);
