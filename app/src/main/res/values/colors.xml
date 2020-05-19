@@ -8,4 +8,6 @@
     <color name="click">#f0cfad</color>
     <color name="menu">#ECCAA3</color>
     <color name="layout">#F1E8CE</color>
+    <color name="diagram">#48CFAD</color>
+    <color name="diagram2">#F76D82</color>
 </resources>

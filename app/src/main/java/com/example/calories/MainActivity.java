@@ -31,6 +31,7 @@ import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -82,8 +83,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
         TextView text_date = findViewById(R.id.textView6);
         sum_kkal = findViewById(R.id.sum_kkal);
         Date currentDate = new Date(); // Текущее время
@@ -94,9 +93,11 @@ public class MainActivity extends AppCompatActivity
 
         String date = Get_date();
         if (date == null){
+            Save_statistic(kkal_gr);
             Save_date(dateText);
         }
         else if (!date.equals(dateText)){
+            Save_statistic(kkal_gr);
             Clear();
             Save_date(dateText);
         }
@@ -173,23 +174,6 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setLogo(R.drawable.logo_small);
     }
 
-    public void onClick_Today(View view) {
-
-    }
-
-    public void onClick_History(View view) {
-
-    }
-
-    public void onClick_Parameters(View view) {
-        Intent i = new Intent(MainActivity.this, Parameter_Activity.class);
-        startActivity(i);
-    }
-
-    public void onClick_Settings(View view) {
-
-    }
-
     public void onClick_Add(View view) {
         Intent i = new Intent(MainActivity.this, Add_Activity.class);
         startActivityForResult(i, view.getId());
@@ -238,10 +222,27 @@ public class MainActivity extends AppCompatActivity
         kkal_gr += Math.round(parseFloat(prod.getКалорийность()) / (float)100 * parseFloat(prod.getGramm()));
         sum_kkal.setText("Всего:" + " " + kkal_gr + " " + "ккал");
         Save_sum(kkal_gr);
+        Save_statistic(kkal_gr);
+    }
+
+    private void Get_statistic() {
+        sPref = getSharedPreferences("statistic", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPref.edit();
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM", Locale.getDefault());
+        int j = 0;
+        int start = 54;
+        for (int i = 13; i >= 0; i--) {
+            Calendar c = Calendar.getInstance();
+            c.add(Calendar.DAY_OF_MONTH, -i);
+            String first_date = dateFormat.format(c.getTime());
+            editor.putInt(first_date, start);
+            editor.apply();
+            start = start + 2;
+        }
     }
 
     private void Clear(){
-        sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
+        sPref = getSharedPreferences("statistic", MODE_PRIVATE);
         SharedPreferences.Editor editor = sPref.edit();
         editor.clear().apply();
     }
@@ -256,6 +257,23 @@ public class MainActivity extends AppCompatActivity
     private String Get_date() {
         sPref = getSharedPreferences("date", MODE_PRIVATE);
         return sPref.getString("Дата", "");
+    }
+
+    private void Save_statistic(int kkal){
+        sPref = getSharedPreferences("statistic", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sPref.edit();
+
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM", Locale.getDefault());
+        Calendar c = Calendar.getInstance();
+        String date_statistic = dateFormat.format(c.getTime());
+        c.add(Calendar.DAY_OF_MONTH, -14);
+        String first_date = dateFormat.format(c.getTime());
+
+        if (sPref.getInt(first_date, 0) != 0){
+            editor.remove(first_date);
+        }
+        editor.putInt(date_statistic, kkal);
+        editor.apply();
     }
 
     private void Save(Class_prod class_prod, String day){
@@ -349,6 +367,7 @@ public class MainActivity extends AppCompatActivity
                             kkal_gr -= Math.round(parseFloat(selected.getКалорийность()) / (float)100 * parseFloat(selected.getGramm()));
                             sum_kkal.setText("Всего:" + " " + kkal_gr + " " + "ккал");
                             Save_sum(kkal_gr);
+                            Save_statistic(kkal_gr);
                             alertDialog.dismiss();
                         }
                     });
