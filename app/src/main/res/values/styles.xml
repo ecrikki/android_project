@@ -7,5 +7,6 @@
         <item name="colorPrimaryDark">@color/bard</item>
         <!--Убрать статс сверху-->
         <item name="android:windowFullscreen">true</item>
+        <item name="colorControlActivated">@color/bard</item>
     </style>
 </resources>

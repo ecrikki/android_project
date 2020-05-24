@@ -47,6 +47,7 @@
             android:textSize="22sp"
             tools:ignore="MissingConstraints" />
 
+
         <EditText
             android:id="@+id/editText"
             android:layout_width="wrap_content"
@@ -97,8 +98,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="horizontal">
-
+            android:orientation="horizontal"
+            >
             <RadioButton
                 android:id="@+id/radio_w"
                 android:layout_width="96dp"
@@ -106,7 +107,8 @@
                 android:layout_gravity="center"
                 android:checked="true"
                 android:text="ж"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:buttonTint="@color/bard"/>
 
             <RadioButton
                 android:id="@+id/radio_m"
@@ -114,6 +116,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="м"
+                android:buttonTint="@color/bard"
                 android:textSize="20sp" />
 
 
@@ -142,7 +145,8 @@
                 android:layout_gravity="center"
                 android:checked="true"
                 android:text="Минимальный"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:buttonTint="@color/bard"/>
 
             <RadioButton
                 android:id="@+id/radio_2"
@@ -150,21 +154,24 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Низкий"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:buttonTint="@color/bard"/>
             <RadioButton
                 android:id="@+id/radio_3"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Средний"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:buttonTint="@color/bard"/>
             <RadioButton
                 android:id="@+id/radio_4"
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Высокий"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:buttonTint="@color/bard"/>
 
             <RadioButton
                 android:id="@+id/radio_5"
@@ -172,7 +179,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Очень высокий"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:buttonTint="@color/bard"/>
 
         </RadioGroup>
 

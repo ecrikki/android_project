@@ -42,9 +42,9 @@ public class Settings_Activity extends AppCompatActivity {
                 return false;
             }
         });
-
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
         getSupportActionBar().setLogo(R.drawable.logo_small);
+
     }
 }
