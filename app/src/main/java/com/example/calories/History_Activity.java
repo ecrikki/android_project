@@ -31,11 +31,14 @@ public class History_Activity extends AppCompatActivity {
     SharedPreferences sPref;
     ArrayList<String> labels = new ArrayList<>();
     ArrayList<BarEntry> data = new ArrayList<>();
+    public static SharedPreferences preferences;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_activity);
+
+        preferences = getSharedPreferences("parameters", MODE_PRIVATE);
 
         BottomNavigationView menu = findViewById(R.id.menu);
         menu.setSelectedItemId(R.id.history);
@@ -75,8 +78,6 @@ public class History_Activity extends AppCompatActivity {
                 ContextCompat.getColor(chart.getContext(), R.color.diagram),
                 ContextCompat.getColor(chart.getContext(), R.color.diagram2)
         );
-      //  BarDataSet dataSet = new BarDataSet(data, "kkal");
-      //  dataSet.setColors(ColorTemplate.PASTEL_COLORS);
         dataSet.setValueTextColor(Color.BLACK);
         dataSet.setValueTextSize(14f);
 
@@ -92,10 +93,11 @@ public class History_Activity extends AppCompatActivity {
         });
 
         BarData barData = new BarData(dataSet);
-        LimitLine line = new LimitLine(100);
-        chart.getAxisLeft().addLimitLine(line);
         chart.getAxisRight().setEnabled(false);
         chart.getAxisLeft().setEnabled(false);
+
+        chart.getAxisRight().setAxisMinimum(0f);
+        chart.getAxisLeft().setAxisMinimum(0f);
         chart.setFitBars(true);
         chart.getXAxis().setDrawGridLines(false);
         chart.setData(barData);
@@ -108,18 +110,7 @@ public class History_Activity extends AppCompatActivity {
         sPref = getSharedPreferences("statistic", MODE_PRIVATE);
         DateFormat dateFormat = new SimpleDateFormat("dd MMMM", Locale.getDefault());
         int j = 0;
-        int start = 30;
         for (int i = 13; i >= 0; i--){
-            Calendar c = Calendar.getInstance();
-            c.add(Calendar.DAY_OF_MONTH, -i);
-            String first_date = dateFormat.format(c.getTime());
-            if(sPref.getInt(first_date, -1) != -1){
-                start = i;
-                System.out.println(start);
-                break;
-            }
-        }
-        for (int i = start; i >= 0; i--){
             Calendar c = Calendar.getInstance();
             c.add(Calendar.DAY_OF_MONTH, -i);
             String date_statistic = dateFormat.format(c.getTime());

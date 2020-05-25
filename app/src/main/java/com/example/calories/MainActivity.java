@@ -91,21 +91,10 @@ public class MainActivity extends AppCompatActivity
         String dateText = dateFormat.format(currentDate);
         text_date.setText(dateText);
 
-        String date = Get_date();
-        if (date == null){
-            Save_statistic(kkal_gr);
-            Save_date(dateText);
-        }
-        else if (!date.equals(dateText)){
-            Save_statistic(kkal_gr);
-            Clear();
-            Save_date(dateText);
-        }
-
         myList = findViewById(R.id.expandableList);
 
-        kkal_gr = Get_sum();
-        sum_kkal.setText("Всего:" + " " + kkal_gr + " " + "ккал");
+        Get_date(dateText);
+        Get_sum();
 
         Class_prod prod = Get("Завтрак");
         String gramm = "";
@@ -251,8 +240,17 @@ public class MainActivity extends AppCompatActivity
         editor.apply();
     }
 
-    private String Get_date() {
+    private String Get_date(String dateText) {
         sPref = getSharedPreferences("date", MODE_PRIVATE);
+        String date = sPref.getString("Дата", "");
+        if (date.equals("")){
+            Save_statistic(kkal_gr);
+            Save_date(dateText);
+        }
+        else if (!date.equals(dateText)){
+            Clear();
+            Save_date(dateText);
+        }
         return sPref.getString("Дата", "");
     }
 
@@ -266,7 +264,7 @@ public class MainActivity extends AppCompatActivity
         c.add(Calendar.DAY_OF_MONTH, -14);
         String first_date = dateFormat.format(c.getTime());
 
-        if (sPref.getInt(first_date, 0) != 0){
+        if (sPref.getInt(first_date, -1) != -1){
             editor.remove(first_date);
         }
         editor.putInt(date_statistic, kkal);
@@ -298,9 +296,10 @@ public class MainActivity extends AppCompatActivity
         editor.apply();
     }
 
-    private int Get_sum() {
+    private void Get_sum() {
         sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
-        return sPref.getInt("сумма", 0);
+        kkal_gr = sPref.getInt("сумма", 0);
+        sum_kkal.setText("Всего:" + " " + kkal_gr + " " + "ккал");
     }
 
     private void Delete_prod() {
