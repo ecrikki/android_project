@@ -5,7 +5,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,10 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.calories.Adapter.ProductsAdapter_main;
 import com.example.calories.Class.Class_prod;
@@ -211,22 +207,6 @@ public class MainActivity extends AppCompatActivity
         Save_statistic(kkal_gr);
     }
 
-    private void Get_statistic() {
-        sPref = getSharedPreferences("statistic", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sPref.edit();
-        DateFormat dateFormat = new SimpleDateFormat("dd MMMM", Locale.getDefault());
-        int j = 0;
-        int start = 54;
-        for (int i = 13; i >= 0; i--) {
-            Calendar c = Calendar.getInstance();
-            c.add(Calendar.DAY_OF_MONTH, -i);
-            String first_date = dateFormat.format(c.getTime());
-            editor.putInt(first_date, start);
-            editor.apply();
-            start = start + 2;
-        }
-    }
-
     private void Clear(){
         sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
         SharedPreferences.Editor editor = sPref.edit();
@@ -240,7 +220,7 @@ public class MainActivity extends AppCompatActivity
         editor.apply();
     }
 
-    private String Get_date(String dateText) {
+    private void Get_date(String dateText) {
         sPref = getSharedPreferences("date", MODE_PRIVATE);
         String date = sPref.getString("Дата", "");
         if (date.equals("")){
@@ -251,7 +231,6 @@ public class MainActivity extends AppCompatActivity
             Clear();
             Save_date(dateText);
         }
-        return sPref.getString("Дата", "");
     }
 
     private void Save_statistic(int kkal){
@@ -267,6 +246,16 @@ public class MainActivity extends AppCompatActivity
         if (sPref.getInt(first_date, -1) != -1){
             editor.remove(first_date);
         }
+
+        for (int i = 15; i <= 30; i++) {
+            c = Calendar.getInstance();
+            c.add(Calendar.DAY_OF_MONTH, -i);
+            String date_remove = dateFormat.format(c.getTime());
+            if (sPref.getInt(date_remove, -1) != -1){
+                editor.remove(date_remove);
+            }
+        }
+
         editor.putInt(date_statistic, kkal);
         editor.apply();
     }

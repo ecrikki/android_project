@@ -103,7 +103,7 @@ public class History_Activity extends AppCompatActivity {
         chart.setData(barData);
         chart.getLegend().setEnabled(false);
         chart.getDescription().setEnabled(false);
-        chart.animateY(2500);
+        chart.animateY(2000);
     }
 
     private void Get_statistic() {
