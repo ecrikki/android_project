@@ -74,8 +74,8 @@ public class MainActivity extends AppCompatActivity
                     overridePendingTransition(0, 0);
                     return true;
                 }
-                else if(item.getItemId() == R.id.settings){
-                    startActivity(new Intent(getApplicationContext(), Settings_Activity.class));
+                else if(item.getItemId() == R.id.info){
+                    startActivity(new Intent(getApplicationContext(), Info_Activity.class));
                     overridePendingTransition(0, 0);
                     return true;
                 }
@@ -104,11 +104,8 @@ public class MainActivity extends AppCompatActivity
 
         myList = findViewById(R.id.expandableList);
 
-        int sum = Get_sum();
-        if (sum != 0) {
-            kkal_gr = sum;
-            sum_kkal.setText("Всего:" + " " + sum + " " + "ккал");
-        }
+        kkal_gr = Get_sum();
+        sum_kkal.setText("Всего:" + " " + kkal_gr + " " + "ккал");
 
         Class_prod prod = Get("Завтрак");
         String gramm = "";
@@ -242,7 +239,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void Clear(){
-        sPref = getSharedPreferences("statistic", MODE_PRIVATE);
+        sPref = getSharedPreferences("day_eat", MODE_PRIVATE);
         SharedPreferences.Editor editor = sPref.edit();
         editor.clear().apply();
     }

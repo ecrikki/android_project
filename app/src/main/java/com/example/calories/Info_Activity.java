@@ -10,14 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Settings_Activity extends AppCompatActivity {
+public class Info_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.settings_activity);
+        setContentView(R.layout.info_activity);
 
         BottomNavigationView menu = findViewById(R.id.menu);
-        menu.setSelectedItemId(R.id.settings);
+        menu.setSelectedItemId(R.id.info);
         menu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -36,7 +36,7 @@ public class Settings_Activity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 }
-                else if(item.getItemId() == R.id.settings){
+                else if(item.getItemId() == R.id.info){
                     return true;
                 }
                 return false;

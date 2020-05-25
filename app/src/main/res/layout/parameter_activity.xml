@@ -31,7 +31,7 @@
         android:layout_height="45dp"
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
-        android:text="Расчет суточной нормы калорий"
+        android:text="@string/param"
         android:textColor="#401212"
         android:textSize="22sp"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,7 +47,7 @@
         android:layout_marginBottom="72dp"
         android:ems="6"
         android:gravity="center_horizontal"
-        android:hint="вес (кг)"
+        android:hint="@string/weight"
         android:inputType="number"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -65,7 +65,7 @@
         android:layout_marginBottom="72dp"
         android:ems="6"
         android:gravity="center_horizontal"
-        android:hint="рост (см)"
+        android:hint="@string/rost"
         android:inputType="number"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -80,7 +80,7 @@
         android:layout_gravity="center"
         android:ems="6"
         android:gravity="center_horizontal"
-        android:hint="возраст (лет)"
+        android:hint="@string/age"
         android:inputType="number"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
@@ -94,7 +94,7 @@
         android:layout_width="413dp"
         android:layout_height="34dp"
         android:gravity="center"
-        android:text="Пол"
+        android:text="@string/gender"
         android:textColor="#401212"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/menu"
@@ -108,7 +108,7 @@
         android:layout_width="418dp"
         android:layout_height="31dp"
         android:gravity="center"
-        android:text="Уровень активности"
+        android:text="@string/active"
         android:textColor="#401212"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
@@ -124,7 +124,8 @@
         android:layout_marginBottom="16dp"
         android:gravity="center_horizontal"
         app:layout_constraintBottom_toTopOf="@+id/button_norm"
-        tools:layout_editor_absoluteX="4dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
             android:id="@+id/radio_1"
@@ -133,7 +134,7 @@
             android:layout_gravity="center"
             android:buttonTint="@color/bard"
             android:checked="true"
-            android:text="Минимальный"
+            android:text="@string/min"
             android:textSize="18sp" />
 
         <RadioButton
@@ -142,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:buttonTint="@color/bard"
-            android:text="Низкий"
+            android:text="@string/low"
             android:textSize="18sp" />
 
         <RadioButton
@@ -151,7 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:buttonTint="@color/bard"
-            android:text="Средний"
+            android:text="@string/middle"
             android:textSize="18sp" />
 
         <RadioButton
@@ -160,7 +161,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:buttonTint="@color/bard"
-            android:text="Высокий"
+            android:text="@string/high"
             android:textSize="18sp" />
 
         <RadioButton
@@ -169,7 +170,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:buttonTint="@color/bard"
-            android:text="Очень высокий"
+            android:text="@string/max"
             android:textSize="18sp" />
 
     </RadioGroup>
@@ -181,8 +182,8 @@
         android:layout_gravity="center"
         android:layout_marginBottom="44dp"
         android:background="@drawable/button_dialog"
-        android:text="Рассчитать"
         android:onClick="onClick_Calc"
+        android:text="@string/result"
         app:layout_constraintBottom_toTopOf="@+id/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -206,7 +207,7 @@
             android:layout_marginBottom="20dp"
             android:buttonTint="@color/bard"
             android:checked="true"
-            android:text="ж"
+            android:text="@string/woman"
             android:textSize="20sp" />
 
         <RadioButton
@@ -217,7 +218,7 @@
             android:layout_marginEnd="92dp"
             android:layout_marginBottom="20dp"
             android:buttonTint="@color/bard"
-            android:text="м"
+            android:text="@string/man"
             android:textSize="20sp" />
     </RadioGroup>
 
@@ -225,12 +226,12 @@
         android:id="@+id/tvResult"
         android:layout_width="98dp"
         android:layout_height="33dp"
-        android:text="0"
-        android:textStyle="bold"
-        android:textColor="#401212"
-        android:gravity="center_horizontal"
         android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:text="@string/kkal"
+        android:textColor="#401212"
         android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

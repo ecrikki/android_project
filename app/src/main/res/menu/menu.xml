@@ -16,8 +16,8 @@
         android:icon="@drawable/parameters"
         android:title="@string/button_parameters"/>
     <item
-        android:id="@+id/settings"
+        android:id="@+id/info"
         android:enabled="true"
         android:icon="@drawable/icon"
-        android:title="@string/button_settings" />
+        android:title="@string/button_info" />
 </menu>

@@ -1,4 +1,4 @@
-package com.example.calories;
+package com.example.calories.Diagram;
 
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;

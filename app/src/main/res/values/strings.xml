@@ -3,7 +3,7 @@
     <string name="button_today">Today</string>
     <string name="button_history">History</string>
     <string name="button_parameters">Parameters</string>
-    <string name="button_settings">Info</string>
+    <string name="button_info">Info</string>
     <string name="ok">Ок</string>
     <string name="cancel">Отмена</string>
     <string name="text_today">Data</string>
@@ -14,5 +14,20 @@
     <string name="dialog_delete">Подтвердить удаление</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
+    <string name="param">Расчет суточной нормы калорий</string>
+    <string name="weight">вес (кг)</string>
+    <string name="rost">рост (см)</string>
+    <string name="age">возраст (лет)</string>
+    <string name="gender">Пол</string>
+    <string name="active">Уровень активности</string>
+    <string name="min">Минимальный</string>
+    <string name="low">Низкий</string>
+    <string name="middle">Средний</string>
+    <string name="high">Высокий</string>
+    <string name="max">Очень высокий</string>
+    <string name="result">Рассчитать</string>
+    <string name="man">м</string>
+    <string name="woman">ж</string>
+    <string name="info">Разработчики: Сергиенко Ольга, Сидорова Марина ПИ3-2 2020г</string>
 </resources>
 

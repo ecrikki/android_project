@@ -11,24 +11,19 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.calories.Diagram.Diagram_Format;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.ValueFormatter;
-import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class History_Activity extends AppCompatActivity {
@@ -60,8 +55,8 @@ public class History_Activity extends AppCompatActivity {
                     overridePendingTransition(0, 0);
                     return true;
                 }
-                else if(item.getItemId() == R.id.settings){
-                    startActivity(new Intent(getApplicationContext(), Settings_Activity.class));
+                else if(item.getItemId() == R.id.info){
+                    startActivity(new Intent(getApplicationContext(), Info_Activity.class));
                     overridePendingTransition(0, 0);
                     return true;
                 }

@@ -19,7 +19,7 @@
         <activity android:name=".Add_Activity" />
         <activity android:name=".History_Activity" />
         <activity android:name=".Parameter_Activity" />
-        <activity android:name=".Settings_Activity" />
+        <activity android:name=".Info_Activity" />
     </application>
 
 </manifest>

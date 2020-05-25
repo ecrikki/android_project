@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/custombackground"
-    tools:context=".Settings_Activity">
+    tools:context=".Info_Activity">
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menu"
@@ -31,7 +31,7 @@
         android:layout_height="104dp"
         android:layout_marginTop="80dp"
         android:gravity="center_horizontal"
-        android:text="Разработчики: Сергиенко Ольга, Сидорова Марина ПИ3-2 2020г"
+        android:text="@string/info"
         android:textColor="#401212"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
